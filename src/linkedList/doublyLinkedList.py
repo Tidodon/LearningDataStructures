@@ -1,4 +1,5 @@
 
+import copy
 
 class DoublyLinkedList:
 
@@ -31,20 +32,20 @@ class DoublyLinkedList:
 
     def addFirst(self, elem):
         if self.isEmpty():
-            self.head = self.tail = Node(data=elem, prev=None, next_=None )
+            self.head = Node(data=elem, prev=None, next_=None )
+            self.tail = Node(data=elem, prev=None, next_=None )
         else: 
-            head.prev = Node( data=elem, prev=None, next_=self.head)
+            self.head.prev = Node( data=elem, prev=None, next_=self.head)
             self.head = self.head.prev
         self.size += 1
 
     def addLast(self, elem):
         if self.isEmpty():
-            self.head =  self.tail = Node(data=elem, prev=None, next_=None )
+            self.head = self.tail = Node(data=elem, prev=None, next_=None)
+            
         else: 
             self.tail.next_ = Node(data=elem, prev=self.tail, next_=None)
-            self.tail.prev.next_ = self.tail
             self.tail = self.tail.next_
-
         self.size += 1
 
     def peekFirst(self):
@@ -123,20 +124,20 @@ class DoublyLinkedList:
                     break
                 trav = trav.prev
 
-        return removeNode(trav)
+        return self.removeNode(trav)
 
     def removeValue(self, obj):
         trav=self.head
         if obj == None:
             while trav != None:
                 if trav.data == None:
-                    remove(trav)
+                    self.remove(trav)
                     return True
                 trav = trav.next_
         else:
             while trav != None:
                 if trav.data == obj:
-                    remove(trav)
+                    self.remove(trav)
                     return True
             trav = trav.next_
 
@@ -161,7 +162,7 @@ class DoublyLinkedList:
         return -1
 
     def contains(self, obj):
-        return indexOf(obj) != -1
+        return self.indexOf(obj) != -1
 
     def toString(self):
         sb = ""
