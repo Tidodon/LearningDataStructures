@@ -26,6 +26,15 @@ class TestQueue:
         q.poll()
         assert q.size() == 0
         assert q.isEmpty() == True
+        q.offer(4)
+        q.offer(5)
+        q.offer(6)
+        assert q.size() == 3
+        assert q.isEmpty() == False
+        q.poll()
+        assert q.size() == 2
+        assert q.isEmpty() == False
+        assert q.peek() == 5
 
     def test_offer(self,q):
         q.offer(4)
